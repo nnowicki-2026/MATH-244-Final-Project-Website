@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "MATH 244: Intermediate Data Science Project",
+    "section": "",
+    "text": "Welcome! This is a template for creating a website using quarto and GitHub pages.\n\n\n\n\n\nArtwork by @allison_horst"
+  },
+  {
+    "objectID": "notes.html",
+    "href": "notes.html",
+    "title": "Notes",
+    "section": "",
+    "text": "Example of adding another page to a website."
+  }
+]

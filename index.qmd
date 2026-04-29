@@ -1,0 +1,9 @@
+---
+title: "MATH 244: Intermediate Data Science Project"
+---
+
+Welcome! This is a template for creating a website using quarto and GitHub pages.
+
+![](hedgehog.png){fig-align="center" width="603"}
+
+[Artwork by \@allison_horst](https://twitter.com/allison_horst)

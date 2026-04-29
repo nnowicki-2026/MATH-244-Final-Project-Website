@@ -1,0 +1,17 @@
+---
+title: "Notes"
+subtitle: "Spring 2026"
+format: 
+  html:
+    page-layout: full
+    theme: cosmo
+    toc: true
+    toc-title: "Contents"
+    embed-resources: true
+    standalone: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+Example of adding another page to a website.

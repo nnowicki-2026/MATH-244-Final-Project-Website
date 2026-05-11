@@ -14,7 +14,7 @@ editor:
 ---
 
 ```{r}
-#|echo: false
+#| echo: false
 library(dplyr)
 library(tidyverse)
 library(reticulate)
@@ -23,7 +23,7 @@ py_require(c("matplotlib"))
 ```
 
 ```{r}
-#|echo: false
+#| echo: false
 movies <- read.csv("/Users/noranowicki/MATH-244-Final-Project-Website/HollywoodMovies.csv")
 movies <- movies %>%
   mutate(BOAvgOpenWeekend = BOAvgOpenWeekend / 1000000)
@@ -37,7 +37,7 @@ movies <- movies %>%
 ```
 
 ```{r}
-#|echo: false
+#| echo: false
 movies <- movies |>
   filter(Profitability <= 2000, WorldGross <= 1000) 
 #filter out profitability <= 2000, and worldgross <= 1000 in order to remove extreme outliers

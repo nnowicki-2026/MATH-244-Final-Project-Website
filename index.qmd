@@ -1,8 +1,9 @@
 ---
 title: "Analysis of Hollywood Movies"
+subtitle: " By Nora Nowicki and Chunyi Quan"
 ---
 
-Welcome! This is a template for creating a website using quarto and GitHub pages.
+For our final project, we will be analyzing a GitHub dataset containing 16 variables related to movies and 591 observations, after our data cleaning, where each observation represents a Hollywood movie from 2007 to 2013. The question we are attempting to answer by analyzing this data is, what variables contribute to making a successful movie? For this project, we will be defining success by the profitability and world gross of a movie. We chose this data and question because of our mutual love of movies, and because we were curious to discover what variables make a movie the most profitable. By investigating this topic, we aim to have a more comprehensive understanding of different features of movies and how they contribute to making a successful movie.
 
 ![](hedgehog.png){fig-align="center" width="603"}
 

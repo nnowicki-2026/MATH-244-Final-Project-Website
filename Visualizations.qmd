@@ -13,13 +13,14 @@ editor:
     wrap: 72
 ---
 
+### Figure 1: Movie Profitability vs. Worldwide Gross
+
 ```{r}
 #| echo: false
 library(dplyr)
 library(tidyverse)
 library(reticulate)
-py_require(c("seaborn"))
-py_require(c("matplotlib"))
+library(ggplot2)
 ```
 
 ```{r}
@@ -30,7 +31,6 @@ movies <- movies %>%
 
 movies <- movies %>% 
   drop_na()
-
 movies <- movies %>% 
   mutate(across(where(is.character), ~ na_if(., ""))) %>% 
   drop_na()
@@ -60,3 +60,93 @@ ggplot(data = movies_top5, aes(x = WorldGross, y = Profitability, color = Genre)
   ) +
   theme_minimal()
 ```
+
+### Figure 2: Audience Score vs. Worldwide Gross
+
+```{r}
+#| echo: false
+ggplot(data = movies_top5, aes(x = AudienceScore, y = WorldGross, color = Genre)) + geom_point() + geom_smooth(method = "lm", se = FALSE) + facet_wrap(~ Genre, scales = "free", ncol = 3) + labs(
+    title = "Audience Score vs. Worldwide Gross",
+    x = "Audience Score (%)",
+    y = "Worldwide Gross (in millions $)"
+  ) +
+  theme_minimal()
+```
+
+### Figure 3: Distribution of World Gross by Rotten Tomatoes and Audience Scores
+
+```{r}
+#| echo: false
+critic_review <- pivot_longer(movies, 
+                        cols = c(AudienceScore, RottenTomatoes),
+                        names_to = "group",
+                        values_to = "value")
+
+ggplot(data = critic_review,
+       mapping = aes(x = group, y = value, fill = group)) +
+  geom_boxplot() +
+  labs(title = "Distribution of World Gross by Rotten Tomatoes and Audience Scores",
+       x = "Critic Scores (percent)", 
+       y = "World Gross (million)") +
+  theme_minimal()
+```
+### Figure 4: Number of Theaters Showing Movie vs. Opening Weekend Revenue
+
+```{r}
+#| echo: false
+ggplot(data = movies,
+       mapping = aes(x = TheatersOpenWeek, y = OpeningWeekend)) +
+  geom_point() +
+  geom_smooth(method = "glm", 
+              formula = y ~ x,
+              method.args = list(family = gaussian(link = "log")),
+              color = "red", se = FALSE) +
+  labs(title = "Number of Theaters Showing Movie vs. Opening Weekend Revenue",
+       x = "Number of Theaters Showing Movie",
+       y = "Opening Weekend Revenue (in millions $)") +
+  theme_minimal()
+```
+## Clustering Model Visualization
+
+### Figure 5: World Gross Distribution by Budget Cluster
+
+```{r}
+#|echo: false
+budget_data <- data.frame(Budget = movies$Budget)
+
+set.seed(123)
+kmeans_result <- kmeans(budget_data, centers = 5)
+kmeans_result$centers
+
+movies$Cluster <- as.factor(kmeans_result$cluster)
+
+budget_ranges <- movies %>%
+  group_by(Cluster) %>%
+  summarise(
+    Count = n(),
+    Min_Budget = min(Budget, na.rm = TRUE),
+    Max_Budget = max(Budget, na.rm = TRUE),
+    Mean_Budget = mean(Budget, na.rm = TRUE),
+    Budget_Range = paste("$", round(Min_Budget, 0), "-", round(Max_Budget, 0))
+  )
+
+print(budget_ranges)
+print(kmeans_result$centers)
+
+cluster_means <- movies %>%
+  group_by(Cluster) %>%
+  summarise(mean_opening = mean(OpeningWeekend, na.rm = TRUE)) %>%
+  arrange(mean_opening)
+
+
+movies$Cluster <- factor(movies$Cluster, 
+                         levels = cluster_means$Cluster[order(cluster_means$mean_opening)])
+cluster_graph <- ggplot(data = movies, aes(x = Cluster, y = WorldGross, fill = Cluster)) +
+  geom_boxplot() + labs(title = "World Gross Distribution by Budget Cluster",
+       x = "Budget Cluster",
+       y = "Worldwide Gross (in millions $)") +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 4, color = "black") +
+  theme_minimal()
+cluster_graph
+```
+

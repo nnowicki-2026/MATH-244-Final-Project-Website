@@ -1,6 +1,5 @@
 ---
 title: "Visualizations"
-subtitle: "Nora Nowicki and Chunyi Quan"
 format: 
   html:
     page-layout: full
@@ -14,4 +13,50 @@ editor:
     wrap: 72
 ---
 
-visualizations
+```{r}
+#|echo: false
+library(dplyr)
+library(tidyverse)
+library(reticulate)
+py_require(c("seaborn"))
+py_require(c("matplotlib"))
+```
+
+```{r}
+#|echo: false
+movies <- read.csv("/Users/noranowicki/MATH-244-Final-Project-Website/HollywoodMovies.csv")
+movies <- movies %>%
+  mutate(BOAvgOpenWeekend = BOAvgOpenWeekend / 1000000)
+
+movies <- movies %>% 
+  drop_na()
+
+movies <- movies %>% 
+  mutate(across(where(is.character), ~ na_if(., ""))) %>% 
+  drop_na()
+```
+
+```{r}
+#|echo: false
+movies <- movies |>
+  filter(Profitability <= 2000, WorldGross <= 1000) 
+#filter out profitability <= 2000, and worldgross <= 1000 in order to remove extreme outliers
+
+top5_genres <- movies |>
+  count(Genre, sort = TRUE) |>  # Count occurrences of each genre
+  slice_max(n, n = 5) |>         # Take top 5
+  pull(Genre)                     
+
+# Filter data to only include top 5 genres
+movies_top5 <- movies |>
+  filter(Genre %in% top5_genres)
+
+# Visualize profitability and world gross with genre as the points
+ggplot(data = movies_top5, aes(x = WorldGross, y = Profitability, color = Genre)) + geom_point() + geom_smooth(method = "lm", se = FALSE) + labs(
+    title = "Movie Profitability vs. Worldwide Gross",
+    x = "Worldwide Gross (in millions $)",
+    y = "Profitability (in millions $)",
+    color = "Film Genre"
+  ) +
+  theme_minimal()
+```

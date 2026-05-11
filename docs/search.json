@@ -1,16 +1,44 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "MATH 244: Intermediate Data Science Project",
+    "objectID": "Methods.html",
+    "href": "Methods.html",
+    "title": "Methodology",
     "section": "",
-    "text": "Welcome! This is a template for creating a website using quarto and GitHub pages.\n\n\n\n\n\nArtwork by @allison_horst"
+    "text": "methods"
+  },
+  {
+    "objectID": "Results.html",
+    "href": "Results.html",
+    "title": "Results",
+    "section": "",
+    "text": "results"
   },
   {
     "objectID": "notes.html",
     "href": "notes.html",
-    "title": "Notes",
+    "title": "Data",
     "section": "",
     "text": "Example of adding another page to a website."
+  },
+  {
+    "objectID": "Visualizations.html",
+    "href": "Visualizations.html",
+    "title": "Visualizations",
+    "section": "",
+    "text": "visualizations"
+  },
+  {
+    "objectID": "Discussion.html",
+    "href": "Discussion.html",
+    "title": "Discussion",
+    "section": "",
+    "text": "discussion"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Analysis of Hollywood Movies",
+    "section": "",
+    "text": "Welcome! This is a template for creating a website using quarto and GitHub pages.\n\n\n\n\n\nArtwork by @allison_horst"
   }
 ]

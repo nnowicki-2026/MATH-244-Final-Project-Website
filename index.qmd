@@ -1,5 +1,5 @@
 ---
-title: "MATH 244: Intermediate Data Science Project"
+title: "Analysis of Hollywood Movies"
 ---
 
 Welcome! This is a template for creating a website using quarto and GitHub pages.

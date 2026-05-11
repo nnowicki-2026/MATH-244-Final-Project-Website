@@ -1,5 +1,5 @@
 ---
-title: "Data"
+title: "Discussion"
 subtitle: "Nora Nowicki and Chunyi Quan"
 format: 
   html:
@@ -14,4 +14,4 @@ editor:
     wrap: 72
 ---
 
-Example of adding another page to a website.
+discussion

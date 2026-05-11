@@ -7,4 +7,4 @@ For our final project, we will be analyzing a GitHub dataset containing 16 varia
 
 
 
-![](CaptainAmerica.gif){fig-align="center" width="603"}
+![](movie.png){fig-align="center" width="403"}

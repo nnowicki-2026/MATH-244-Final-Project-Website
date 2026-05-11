@@ -4,7 +4,7 @@
     "href": "Methods.html",
     "title": "Methodology",
     "section": "",
-    "text": "methods"
+    "text": "We started our initial investigation by cleaning the dataset. First, we had to make sure that all the variables that were in units of money were in millions of dollars. We replaced the BOAvgOpenWeekend column to be in units of millions, and we calculated that column by taking OpeningWeekend and dividing it by TheatersOpenWeek. After we made that change, we deleted missing observations from the dataset so that we could create visualizations and do analysis without the influence of empty entries."
   },
   {
     "objectID": "Results.html",

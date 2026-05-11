@@ -16,7 +16,7 @@ editor:
 ### Figure 1: Movie Profitability vs. Worldwide Gross
 
 ```{r}
-#| echo: false
+#|echo: false
 library(dplyr)
 library(tidyverse)
 library(reticulate)
@@ -24,7 +24,7 @@ library(ggplot2)
 ```
 
 ```{r}
-#| echo: false
+#|echo: false
 movies <- read.csv("/Users/noranowicki/MATH-244-Final-Project-Website/HollywoodMovies.csv")
 movies <- movies %>%
   mutate(BOAvgOpenWeekend = BOAvgOpenWeekend / 1000000)
@@ -37,7 +37,7 @@ movies <- movies %>%
 ```
 
 ```{r}
-#| echo: false
+#|echo: false
 movies <- movies |>
   filter(Profitability <= 2000, WorldGross <= 1000) 
 #filter out profitability <= 2000, and worldgross <= 1000 in order to remove extreme outliers
@@ -64,7 +64,7 @@ ggplot(data = movies_top5, aes(x = WorldGross, y = Profitability, color = Genre)
 ### Figure 2: Audience Score vs. Worldwide Gross
 
 ```{r}
-#| echo: false
+#|echo: false
 ggplot(data = movies_top5, aes(x = AudienceScore, y = WorldGross, color = Genre)) + geom_point() + geom_smooth(method = "lm", se = FALSE) + facet_wrap(~ Genre, scales = "free", ncol = 3) + labs(
     title = "Audience Score vs. Worldwide Gross",
     x = "Audience Score (%)",
@@ -76,7 +76,7 @@ ggplot(data = movies_top5, aes(x = AudienceScore, y = WorldGross, color = Genre)
 ### Figure 3: Distribution of World Gross by Rotten Tomatoes and Audience Scores
 
 ```{r}
-#| echo: false
+#|echo: false
 critic_review <- pivot_longer(movies, 
                         cols = c(AudienceScore, RottenTomatoes),
                         names_to = "group",
@@ -93,7 +93,7 @@ ggplot(data = critic_review,
 ### Figure 4: Number of Theaters Showing Movie vs. Opening Weekend Revenue
 
 ```{r}
-#| echo: false
+#|echo: false
 ggplot(data = movies,
        mapping = aes(x = TheatersOpenWeek, y = OpeningWeekend)) +
   geom_point() +

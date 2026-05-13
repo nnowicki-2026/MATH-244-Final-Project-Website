@@ -73,6 +73,7 @@ ggplot(data = movies_top5, aes(x = WorldGross, y = Profitability, color = Genre)
 #| echo: false
 #| message: false
 #| warning: false
+# Scatterplot faceting code
 ggplot(data = movies_top5, aes(x = AudienceScore, y = WorldGross, color = Genre)) + geom_point() + geom_smooth(method = "lm", se = FALSE) + facet_wrap(~ Genre, scales = "free", ncol = 3) + labs(
     title = "Audience Score vs. Worldwide Gross",
     x = "Audience Score (%)",
@@ -90,8 +91,8 @@ ggplot(data = movies_top5, aes(x = AudienceScore, y = WorldGross, color = Genre)
 critic_review <- pivot_longer(movies, 
                         cols = c(AudienceScore, RottenTomatoes),
                         names_to = "group",
-                        values_to = "value")
-
+                        values_to = "value") #grouping the rating columns to make the bax plot
+#critic review side-by-side box plot
 ggplot(data = critic_review,
        mapping = aes(x = group, y = value, fill = group)) +
   geom_boxplot() +
@@ -106,10 +107,11 @@ ggplot(data = critic_review,
 #| echo: false
 #| message: false
 #| warning: false
+#scatterplot for number of theaters showing the movie and opening weekend profit
 ggplot(data = movies,
        mapping = aes(x = TheatersOpenWeek, y = OpeningWeekend)) +
   geom_point() +
-  geom_smooth(method = "glm", 
+  geom_smooth(method = "glm", #exponential fit
               formula = y ~ x,
               method.args = list(family = gaussian(link = "log")),
               color = "red", se = FALSE) +
@@ -128,13 +130,13 @@ ggplot(data = movies,
 #| warning: false
 budget_data <- data.frame(Budget = movies$Budget)
 
-set.seed(123)
-kmeans_result <- kmeans(budget_data, centers = 5)
+set.seed(123) #taking a random sample for the k0means clusterin
+kmeans_result <- kmeans(budget_data, centers = 5) #state the number of clusters
 kmeans_result$centers
 
 movies$Cluster <- as.factor(kmeans_result$cluster)
 
-budget_ranges <- movies %>%
+budget_ranges <- movies %>% #group the cluster groups
   group_by(Cluster) %>%
   summarise(
     Count = n(),
@@ -144,15 +146,15 @@ budget_ranges <- movies %>%
     Budget_Range = paste("$", round(Min_Budget, 0), "-", round(Max_Budget, 0))
   )
 
-print(budget_ranges)
+print(budget_ranges) #show the ranges of the budgets in each cluster
 print(kmeans_result$centers)
 
 cluster_means <- movies %>%
   group_by(Cluster) %>%
   summarise(mean_opening = mean(OpeningWeekend, na.rm = TRUE)) %>%
-  arrange(mean_opening)
+  arrange(mean_opening) #order the clusters in increasing budgets
 
-
+#clustering side-by-side box plots, visualization
 movies$Cluster <- factor(movies$Cluster, 
                          levels = cluster_means$Cluster[order(cluster_means$mean_opening)])
 cluster_graph <- ggplot(data = movies, aes(x = Cluster, y = WorldGross, fill = Cluster)) +
@@ -172,6 +174,7 @@ cluster_graph
 #| echo: false
 #| message: false
 #| warning: false
+#multilinear regression with profitability as outcome
 m1 <- lm(Profitability ~ RottenTomatoes + AudienceScore + TheatersOpenWeek + Genre + BOAvgOpenWeekend, data = movies_top5)
 summary(m1)
 ```
@@ -181,6 +184,7 @@ summary(m1)
 #| echo: false
 #| message: false
 #| warning: false
+#| #multilinear regression with world gross as outcome
 m2 <- lm(WorldGross ~ RottenTomatoes + AudienceScore + TheatersOpenWeek + Genre + BOAvgOpenWeekend, data = movies_top5)
 summary(m2)
 ```

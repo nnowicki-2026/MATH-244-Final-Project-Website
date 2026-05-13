@@ -108,3 +108,6 @@ Our analysis was not without limitations, the largest of which is the time frame
 
 
 For future investigations that expand the scope of our research, it is possible to run our analysis on a set of movie data containing more recent movies, since there are a significant amount of influential movies produced within the past 10 years. Also, people can perform analysis on a dataset covering worldwide movies instead of only Hollywood movies. This way, a more comprehensive pattern for movies from other countries can also be detected. Moreover, people can apply other movie rating sources, since Rotten Tomatoes are mostly not statistically significant, it will be supportive to use other rating sources other than Audience Score to justify the results. 
+
+
+# Website Link

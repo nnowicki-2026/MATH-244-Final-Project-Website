@@ -164,7 +164,9 @@ cluster_graph <- ggplot(data = movies, aes(x = Cluster, y = WorldGross, fill = C
 cluster_graph
 ```
 
-### Multilinear Regression Models
+## Multilinear Regression Models
+
+### Profitability Model
 
 ```{r}
 #| echo: false
@@ -173,6 +175,7 @@ cluster_graph
 m1 <- lm(Profitability ~ RottenTomatoes + AudienceScore + TheatersOpenWeek + Genre + BOAvgOpenWeekend, data = movies_top5)
 summary(m1)
 ```
+### World Gross Model
 
 ```{r}
 #| echo: false

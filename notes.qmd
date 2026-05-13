@@ -15,6 +15,8 @@ editor:
 
 ### Data Summary
 
+Some of the interesting things we noted in our data summary were that the minimum and maximum of Rotten Tomatoes scores were higher than the audience scores, and that the minimum number of theaters showing a movie on opening weekend was two.
+
 | Variable | Minimum | Median | Mean | Maximum |
 | :---- | :---- | :---- | :---- | :---- |
 | Movie |  |  |  |  |
@@ -35,6 +37,7 @@ editor:
 | BOAvg Weekend | 0.0001504 | 0.0059195 | 0.0081153 | 0.0925000 |
 
 ### Variables
+
 Our outcome variables are profitability and world gross. Profitability is calculated by (WorldGross/Budget)*100, making it a measurement of how much profit a movie makes. World gross is a measurement of the total amount of money a movie makes in theaters, both domestic (in the United States) and abroad. Profitability will be able to explain how many times over the budget a movie earned in total revenue. This way, we can evaluate whether the budget of a movie is directly related to how much money it will make, and investigate the features of the highly profitable movies that are low-budget and high-return. When the profitability is above 100, it represents that the movie is making a profit. If not, then the movie suffered losses. 
 
 Our chosen explanatory variables are Genre, RottenTomatoes, AudienceScore, TheatersOpenWeek, OpeningWeekend, BOAvgOpenWeekend, and Budget. Genre is a categorical variable classifying the movie's genre. RottenTomatoes is a score given as a percentage by critics for movies released in theaters. AudienceScore is also measured as a percentage and is the audience’s rating of the movie. TheatersOpenWeek measures the number of theaters that showed the movie during its opening weekend. OpeningWeekend measures a movie’s total revenue across all the theaters it was showing in for the first weekend after its release. BOAvgOpenWeekend measures the average revenue across all the theaters it was showing in on opening weekend. Finally, Budget is a measure of how much money was spent in the production of the movie, which can include day-to-day production costs, actors’ salaries, and advertising.
